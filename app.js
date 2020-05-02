@@ -17,7 +17,7 @@ class HTML {
 	}
 
 	printMessage(message, className) {
-		var messageWrapper = document.createElement('div');
+		const messageWrapper = document.createElement('div');
 		messageWrapper.classList.add('text-center', 'alert', className);
 		messageWrapper.appendChild(document.createTextNode(message));
 
@@ -31,9 +31,9 @@ class HTML {
 	}
 
 	addExpenseToList(name, amount) {
-		var li = document.createElement('li');
+		const li = document.createElement('li');
 		li.className = 'list-group-item d-flex justify-content-between align-items-center remove';
-		var liAmount = amount;
+		const liAmount = amount;
 		li.innerHTML = `
                         ${name}
                         <span class="badge badge-primary item__delete item">$ ${liAmount}<button class="item__delete--btn"><i onclick="removeFromList(this,${liAmount})" class="ion-ios-close-outline delete"></i></button></span>
@@ -44,14 +44,14 @@ class HTML {
 
 	//subtract from amount
 	trackBudget(amount) {
-		var budgetLeftDollars = budget.subtractFromBudget(amount);
+		const budgetLeftDollars = budget.subtractFromBudget(amount);
 		budgetLeft.innerHTML = 'Remaining Budget - $' + `${budgetLeftDollars}`;
 
-		var totalExpenses = userBudget - budgetLeftDollars;
+		const totalExpenses = userBudget - budgetLeftDollars;
 		document.querySelector('.budget__expenses--value').innerHTML = '$ ' + totalExpenses;
 
-		var expensePercentage = totalExpenses / userBudget;
-		var round = Math.round(expensePercentage * 100);
+		const expensePercentage = totalExpenses / userBudget;
+		const round = Math.round(expensePercentage * 100);
 		document.querySelector('.budget__expenses--percentage').innerHTML = round + '%';
 
 		if (budgetLeftDollars <= 0) {
@@ -62,16 +62,16 @@ class HTML {
 	}
 }
 
-var addExpenseForm = document.querySelector('.add__container'),
+const addExpenseForm = document.querySelector('.add__container'),
 	budgetTotal = document.querySelector('.budget__income--value'),
 	budgetLeft = document.querySelector('.budget__value');
 totalExpenses = document.querySelector('.budget__expenses--value');
 
-var budget;
-var userBudget;
-var html = new HTML();
+let budget;
+let userBudget;
+const html = new HTML();
 
-var expenseList = document.querySelector('.expenses__list');
+const expenseList = document.querySelector('.expenses__list');
 
 function removeFromList(element, amount) {
 	element.parentElement.parentElement.parentElement.remove();
@@ -98,8 +98,8 @@ function eventListeners() {
 	document.querySelector('.add__btn').addEventListener('click', function(e) {
 		e.preventDefault();
 
-		var expenseName = document.querySelector('.add__description').value;
-		var amount = document.querySelector('.add__value').value;
+		const expenseName = document.querySelector('.add__description').value;
+		const amount = document.querySelector('.add__value').value;
 
 		if (expenseName.length && amount.length) {
 			html.addExpenseToList(expenseName, amount);
@@ -112,12 +112,12 @@ function eventListeners() {
 
 	document.addEventListener('keypress', function(event) {
 		if (event.keyCode === 13 || event.which === 13) {
-			var expenseName = document.querySelector('.add__description').value;
-			var amount = document.querySelector('.add__value').value;
-			var focus = document.querySelector('.add__description').focus();
+			const expenseName = document.querySelector('.add__description').value;
+			const amount = document.querySelector('.add__value').value;
+			const focus = document.querySelector('.add__description').focus();
 
 			function setFocusToTextBox() {
-				var textbox = document.querySelector('.add__description');
+				const textbox = document.querySelector('.add__description');
 				textbox.focus();
 			}
 
